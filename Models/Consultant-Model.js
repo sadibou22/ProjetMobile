@@ -17,14 +17,7 @@ exports.connect = function() {
     };
     mongoose.connect(urlDB, cb);
 };
-//connect();
-//
-// Mes Schemas
-//Sous schema Competences
-/*var CompetencesSchema = new mongoose.Schema({
-	Titre : {type: String},
-	Niveau :{type : Number}
-});*/
+
 //Sous schema Projet
 var projetSchema = new mongoose.Schema({
 	ProjectName : { type: String},

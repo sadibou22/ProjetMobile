@@ -9,8 +9,6 @@ var mongoose = require('mongoose');
 
 //get un consultant by id
 exports.getConsultant = function(id, callback) {
-    //console.log(id);
-    //var id = req.params.id;
     serviceConsultant.ConsultantModel.findById(id, function(err, consultant){
 		if(err) {
 			console.log(err);
@@ -30,68 +28,33 @@ exports.getAllConsultants = function(req, res) {
 			res.send('error');
 			console.log(error);
 		} else {
-			//console.log(consultants);
 			res.json(consultants);
 		}
 	});
     console.log('test Tous les consultants');
 };
 
-
-//upload fichier + depot dans un dossier + extraction data + save dans mongo AVEC CSV
-exports.uploadFile2 = function (localPath, filePath, csvFileName, callback){
-    //console.log(csvFileName);
-    fs.readFile(localPath, function(err, data){
-        //var newPath = __dirname + '/files/'+c.files.myfile.name;
-        if(err){
-            throw err;
-        }
-        fs.writeFile(filePath, data, function (err) {
-	  	if(err) {throw err;}
-	    callback.redirect('back');
-		//callback.sendfile(__dirname+'/views/save_data.html');
-	  });
-        
-    });
-//ensuite delete le file pour ne pas encombré a activer apres
-	/*fs.unlink(csvFileName, function(err) {
-   if (err) {
-       return console.error(err);
-   }
-   console.log("File deleted successfully!");
-	});*/
-	
-   //save in array 
-   var data1=csv.csvtojson(csvFileName); //csvtojson is function that accepts csv filenames and returns JSON object
-   //save data in mongo
-   saveInMongo(data1);
-   
-};
 //test upload
 exports.upload = function(FileName){
-	 var data1=csv.csvtojson(FileName); //csvtojson is function that accepts csv filenames and returns JSON object
-	 console.log(data1);
-	 //ensuite delete le file pour ne pas encombré a activer apres
+	var data1=csv.csvtojson(FileName); //csvtojson is function that accepts csv filenames and returns JSON object
+	console.log(data1);
+	//save data in mongo
+   	saveInMongo(data1);
+	//ensuite delete le file pour ne pas encombré a activer apres
 	fs.unlink(FileName, function(err) {
 		if (err) {
 		return console.error(err);
 		}
 		console.log("File deleted successfully!");
 	});
-	//save data in mongo
-   saveInMongo(data1);
+	
 }
-
-
 
 //methode pour sauvegarder dans mongodb a optimiser after 
 var saveInMongo = function (data){ 
-	//Loop to save
-	
     for (var i=0; i< data.length; i++){
 		findConsultant(data, i);
-	}
-    
+	}   
 }
 //fonction qui teste si consultant existe le save ou le update
 var findConsultant = function(data,j){
