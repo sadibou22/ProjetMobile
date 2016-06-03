@@ -53,7 +53,7 @@ exports.uploadFile2 = function (localPath, filePath, csvFileName, callback){
 	  });
         
     });
-//ensuite delete le file pour ne pas encombré mon server a activer au besoin
+//ensuite delete le file pour ne pas encombré a activer apres
 	/*fs.unlink(csvFileName, function(err) {
    if (err) {
        return console.error(err);
@@ -65,12 +65,7 @@ exports.uploadFile2 = function (localPath, filePath, csvFileName, callback){
    var data1=csv.csvtojson(csvFileName); //csvtojson is function that accepts csv filenames and returns JSON object
    //save data in mongo
    saveInMongo(data1);
-    //test contenu via log
-/*for (var i=0; i< data1.length; i++){
-	console.log('tester mon document ' +i);//tester mon premier document
-	console.log(data1[i]);//where key is the from json key-value format
-}*/
-//console.log('localle file cheikh cest la :'+localPath);
+   
 };
 
 //methode pour sauvegarder dans mongodb a optimiser after 
@@ -78,12 +73,10 @@ var saveInMongo = function (data){
 	//Loop to save
 	
     for (var i=0; i< data.length; i++){
-		//findConsultant(data, i);
+		findConsultant(data, i);
 	}
     
 }
-
-
 //fonction qui teste si consultant existe le save ou le update
 var findConsultant = function(data,j){
 	
