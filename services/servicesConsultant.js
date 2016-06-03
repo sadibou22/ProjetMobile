@@ -1,4 +1,4 @@
-Enter file contents here
+//Tableau de mes extensions permises
 exports.extensionsValides=['csv','json'];
 //exports.fileExt //stock l'extension du fichier
 var getExtension = function(filename)
