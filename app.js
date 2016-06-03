@@ -31,10 +31,7 @@ app.post('/upload', function(req, res){
 	var localPath = req.files.myfile.path;
 	//req.files.myfile.path
 	ConsultantController.uploadFile2(localPath, pathFile, csvFileName, res);
-	//console.log(localPath);
-	//console.log(pathFile);
-	//console.log(csvFileName);
-	//res.sendfile(__dirname+'/views/save_data.html');
+	
 }); 
 
 
