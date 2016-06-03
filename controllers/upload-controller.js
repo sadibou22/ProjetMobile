@@ -67,6 +67,22 @@ exports.uploadFile2 = function (localPath, filePath, csvFileName, callback){
    saveInMongo(data1);
    
 };
+//test upload
+exports.upload = function(FileName){
+	 var data1=csv.csvtojson(FileName); //csvtojson is function that accepts csv filenames and returns JSON object
+	 console.log(data1);
+	 //ensuite delete le file pour ne pas encombré a activer apres
+	fs.unlink(FileName, function(err) {
+		if (err) {
+		return console.error(err);
+		}
+		console.log("File deleted successfully!");
+	});
+	//save data in mongo
+   saveInMongo(data1);
+}
+
+
 
 //methode pour sauvegarder dans mongodb a optimiser after 
 var saveInMongo = function (data){ 

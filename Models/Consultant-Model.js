@@ -40,17 +40,8 @@ var consultantSchema = new mongoose.Schema({
 	Nom : { type: String },
 	Competences : [],
 	Projets : []
-	/*_id : {type: Number, required:true },
-    Prenom : { type: String },
-	Nom : { type: String },
-	Competences : { type: String },
-	Projet : { type: String }*/
 });
 
-//Creation model competence
-//exports.CompetencetModel = mongoose.model('Competences',CompetencesSchema);
-//Creation model projet a reprendre
-exports.ProjetModel = mongoose.model('Projets',projetSchema);
 //creation de mon model pour les consultants(ma classe)
 exports.ConsultantModel = mongoose.model('Consultant',consultantSchema);
 

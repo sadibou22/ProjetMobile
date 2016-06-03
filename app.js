@@ -13,7 +13,7 @@ var Model = require('./Models/Consultant-Model.js')
 var ConsultantController = require('./controllers/upload-controller.js')
 
 app.use(express.bodyParser());
-
+app.use(express.bodyParser({ keepExtensions: true, uploadDir:'./files'}));
 
 
 /*****API****/
@@ -26,12 +26,9 @@ app.get('/', function(req, res){
 
 //upload fichier + depot dans un dossier + extraction data + save dans mongo
 app.post('/upload', function(req, res){
-	var csvFileName=req.files.myfile.name;
-	var pathFile = __dirname + '/files/'+req.files.myfile.name;
-	var localPath = req.files.myfile.path;
-	//req.files.myfile.path
-	ConsultantController.uploadFile2(localPath, pathFile, csvFileName, res);
-	
+	var filename = req.files.myfile.path
+	ConsultantController.upload(filename);
+	res.end(req.files.myfile.path);
 }); 
 
 
@@ -39,10 +36,7 @@ app.post('/upload', function(req, res){
 app.get('/AfficheConsultants', function (req, res){ConsultantController.getAllConsultants(req, res)});
 //Afficher un consultant
 app.get('/AfficheConsultants/:id', function(req, res) {
-	//var id = req.params.id;
-	//console.log(req.params.id);
 	ConsultantController.getConsultant(req.params.id, res);
-	
 });
 
 
