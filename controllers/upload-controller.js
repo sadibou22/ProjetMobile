@@ -78,7 +78,7 @@ var saveInMongo = function (data){
 	//Loop to save
 	
     for (var i=0; i< data.length; i++){
-		findConsultant(data, i);
+		//findConsultant(data, i);
 	}
     
 }
