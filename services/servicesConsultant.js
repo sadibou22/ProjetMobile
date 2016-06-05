@@ -23,7 +23,7 @@ exports.verifFileExtension =  function(listeExt, filename )
 			return (true);
 		}
 	}
-	console.log("Votre CV doit �tre au format Word csv ou json");
+	console.log("le fichier doit etre csv ou json");
 	return (false);
      }
  
